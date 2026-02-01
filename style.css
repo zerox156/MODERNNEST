@@ -1,5 +1,6 @@
 :root {
     --bg-color: #ffffff;
+    --bg-rgb: 255, 255, 255; /* Transparent effect එක සඳහා */
     --text-color: #111111;
     --accent-color: #d4a373;
     --border-color: #eeeeee;
@@ -9,6 +10,7 @@
 
 [data-theme="dark"] {
     --bg-color: #0f0f0f;
+    --bg-rgb: 15, 15, 15; /* Transparent effect එක සඳහා */
     --text-color: #f5f5f5;
     --border-color: #222222;
     --para-color: #aaaaaa;
@@ -33,6 +35,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 /* Site Title Style */
 .site-title { font-size: 36px; letter-spacing: 6px; text-transform: uppercase; font-weight: 400; transition: 0.5s; }
 .site-title span { color: var(--accent-color); font-weight: 700; }
+.site-title a { text-decoration: none; color: inherit; }
 
 /* Preloader */
 #preloader { position: fixed; inset: 0; background: var(--bg-color); display: flex; justify-content: center; align-items: center; z-index: 9999; }
@@ -42,7 +45,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .loader-line { width: 0; height: 1px; background: var(--accent-color); animation: loadLine 2s infinite; }
 @keyframes loadLine { 0% { width: 0; } 100% { width: 100px; } }
 
-/* --- Updated Header & Nav Section --- */
+/* --- UPDATED HEADER & NAV (BALANCED & TRANSPARENT) --- */
 header { 
     position: fixed; 
     top: 0; 
@@ -52,13 +55,17 @@ header {
     border-bottom: 1px solid var(--border-color); 
     display: flex; 
     align-items: center; 
-    transition: 0.5s ease-in-out; 
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
     z-index: 1000; 
 }
 
+/* Scroll කරද්දී පාරදෘශ්‍ය වීම */
 header.sticky { 
-    height: 80px; /* උස පොඩ්ඩක් අඩු කළා වඩාත් සමබර පෙනුමට */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+    height: 80px; 
+    background: rgba(var(--bg-rgb), 0.8); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
 }
 
 .header-content { 
@@ -67,71 +74,77 @@ header.sticky {
     align-items: center; 
     justify-content: center;
     width: 100%; 
-    gap: 10px;
     transition: 0.5s ease-in-out; 
+    gap: 15px;
 }
 
-/* Sticky වූ පසු items දෙපැත්තට යන ආකාරය */
 header.sticky .header-content { 
     flex-direction: row; 
     justify-content: space-between; 
-    padding: 0 40px; 
+    padding: 0 50px; 
     gap: 0;
 }
 
-header.sticky .site-title { 
-    font-size: 24px; 
-    letter-spacing: 3px; 
-}
+header.sticky .site-title { font-size: 22px; letter-spacing: 3px; }
 
+/* Nav alignment fixes */
 .main-nav { 
     display: flex; 
     width: 100%; 
     justify-content: center; 
     align-items: center; 
-    margin-top: 15px; 
+    margin-top: 20px; 
     transition: 0.5s; 
 }
 
 header.sticky .main-nav { 
     margin-top: 0; 
     width: auto; 
+    gap: 30px;
 }
 
 .nav-links { 
     display: flex; 
     list-style: none; 
-    gap: 30px; 
+    gap: 35px; 
     align-items: center;
 }
 
-/* Latest Post link එක අනෙක් ඒවා සමඟ සමබර කිරීමට */
-.nav-links li a {
-    text-decoration: none;
+.cat-item { 
+    font-size: 11px; 
+    font-weight: 600; 
+    letter-spacing: 2px; 
+    color: var(--para-color); 
+    cursor: pointer; 
+    position: relative; 
+    padding: 5px 0; 
+    transition: 0.3s; 
+    text-transform: uppercase; 
 }
 
-/* Search & Switch Area */
+.cat-item:hover, .cat-item.active { color: var(--text-color); }
+.cat-item.active { color: var(--accent-color); }
+.cat-item::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1.5px; background: var(--accent-color); transition: 0.4s; transform: translateX(-50%); }
+.cat-item:hover::after, .cat-item.active::after { width: 20px; }
+
+/* Search & Switch Balance */
 .nav-extras { 
     display: flex; 
     align-items: center; 
     gap: 25px; 
+    margin-left: 20px;
 }
 
-/* Logo area adjustment */
-.logo-area {
-    display: flex;
-    align-items: center;
-}
+header.sticky .nav-extras { margin-left: 0; }
 
-/* Search & Switch */
-.nav-extras { display: flex; align-items: center; gap: 20px; }
+.search-container { display: flex; align-items: center; gap: 10px; }
 .input-wrapper { position: relative; width: 130px; }
 .input-wrapper input { width: 100%; border: none; border-bottom: 1px solid var(--border-color); background: transparent; color: var(--text-color); outline: none; padding: 5px 0; }
 .placeholder-label { position: absolute; left: 0; top: 5px; font-size: 11px; color: #999; pointer-events: none; transition: 0.3s; }
 .input-wrapper input:focus + .placeholder-label, .input-wrapper input:not(:placeholder-shown) + .placeholder-label { opacity: 0; transform: translateY(-5px); }
 .uiverse-search-btn { background: transparent; border: none; cursor: pointer; font-size: 16px; color: var(--text-color); }
 
-.switch { position: relative; width: 3.5em; height: 1.8em; }
+.switch { position: relative; width: 3.5em; height: 1.8em; display: flex; align-items: center; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; inset: 0; background: #28096b; border-radius: 30px; cursor: pointer; transition: 0.4s; }
 .slider:before { position: absolute; content: ""; height: 1.2em; width: 1.2em; left: 10%; bottom: 15%; background: #28096b; box-shadow: inset 6px -3px 0px 0px #fff000; border-radius: 50%; transition: 0.4s; }
@@ -193,4 +206,8 @@ input:checked + .slider:before { transform: translateX(1.5em); box-shadow: inset
     .footer-grid { grid-template-columns: 1fr 1fr; } 
     .grid-item, .grid-item:nth-child(even) { flex-direction: column; }
     .img-holder { height: 350px; width: 100%; }
+    header.sticky .header-content { padding: 0 20px; }
+    .nav-links { gap: 15px; }
 }
+
+

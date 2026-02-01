@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODERN NEST | Interior Design Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <h1 class="loader-logo">MODERN<span>NEST</span></h1>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <header id="main-header">
+        <div class="header-content container">
+            <div class="logo-area">
+                <h1 class="site-title"><a href="index.html" style="text-decoration:none; color:inherit;">MODERN<span>NEST</span></a></h1>
+            </div>
+            
+            <nav class="main-nav" id="nav-menu">
+                <ul class="nav-links">
+    <li class="cat-item active" data-filter="ALL">ALL</li>
+    <li class="cat-item" data-filter="INTERIOR">INTERIOR</li>
+    <li class="cat-item" data-filter="LIVING">LIVING ROOM</li>
+    <li class="cat-item" data-filter="BEDROOM">BEDROOM</li>
+    <li class="cat-item" data-filter="KITCHEN">KITCHEN</li>
+    <li class="cat-item" data-filter="DECOR">DECOR</li>
+    <li class="cat-item"><a href="post.html" style="text-decoration:none; color:inherit;">LATEST POST</a></li>
+</ul>
+                
+                <div class="nav-extras">
+                    <div class="search-container">
+                        <div class="input-wrapper">
+                            <input type="text" id="search-input" placeholder=" " required>
+                            <label class="placeholder-label">Search ideas...</label>
+                        </div>
+                        <button class="uiverse-search-btn">🔎</button>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main> 
+        <section class="hero-slider">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1570129477490-e3ac55d3f11d?q=80&w=2670">
+                <div class="slide-content">
+                    <h2>Modern Living Spaces</h2>
+                    <p>Where comfort meets contemporary elegance.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1617470659918-620256860368?q=80&w=2670">
+                <div class="slide-content">
+                    <h2>Serene Bedroom Retreats</h2>
+                    <p>Unwind in spaces designed for relaxation.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2670">
+                <div class="slide-content">
+                    <h2>Culinary Perfection</h2>
+                    <p>Modern kitchens for the ultimate home chef.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2670">
+                <div class="slide-content">
+                    <h2>Productive Workspaces</h2>
+                    <p>Elevate your focus with minimalist home offices.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2670">
+                <div class="slide-content">
+                    <h2>Elegant Dining Areas</h2>
+                    <p>Perfect settings for unforgettable memories.</p>
+                </div>
+            </div>
+            <div class="slider-dots"></div>
+        </section>
+
+        <div class="container">
+            <div id="blog-wrapper" class="blog-grid"></div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col about-col">
+                <h2 class="footer-logo">MODERN<span>NEST</span></h2>
+                <p>Leading the way in minimalist interior design and modern living aesthetics.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="post.html">Latest Trends</a></li>
+                    <li><a href="#" onclick="handleDirectClick(event, '#')">About Us</a></li>
+                    <li><a href="#" onclick="handleDirectClick(event, '#')">Projects</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>CATEGORIES</h3>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Kitchen</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>NEWSLETTER</h3>
+                <p>Stay updated with our latest design trends.</p>
+                <div class="footer-subscribe">
+                    <input type="email" placeholder="Your Email Address">
+                    <button onclick="handleDirectClick(event, '#')">JOIN</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MODERN NEST Interior Hub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

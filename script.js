@@ -1,4 +1,4 @@
-// Adsterra Direct Link (Insert your real link here)
+// Adsterra Direct Link (ඔයා එවපු විදිහටම)
 const ADSTERRA_DIRECT_LINK = "https://your-adsterra-link.com";
 
 const postData = [
@@ -8,22 +8,19 @@ const postData = [
     { title: "Earth Tones in Bedroom Decor", category: "BEDROOM", image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800", desc: "Bringing nature indoors for a more restful and grounded sleep experience.", affiliateLink: "https://amazon.com/item4" }
 ];
 
-// Logic to open Adsterra in current tab and Original content in new tab
 function handleDirectClick(event, originalLink) {
     event.preventDefault();
-    // Open the target/affiliate content in a new tab
     window.open(originalLink, '_blank');
-    // Immediately redirect current tab to Adsterra
     window.location.href = ADSTERRA_DIRECT_LINK;
 }
 
-// Hero Slider
+// Hero Slider (ඔයා එවපු විදිහටම)
 let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');
 
 function initSlider() {
     const dotsContainer = document.querySelector('.slider-dots');
-    if(!dotsContainer) return; // Prevent error if element missing
+    if(!dotsContainer) return;
     slides.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
@@ -41,7 +38,7 @@ function updateSlider() {
     if(document.querySelectorAll('.dot')[slideIndex]) document.querySelectorAll('.dot')[slideIndex].classList.add('active');
 }
 
-// Render Posts (Alternating Layout)
+// Render Posts (ඔයා එවපු විදිහටම)
 function renderPosts(filter = "ALL") {
     const container = document.getElementById('blog-wrapper');
     if(!container) return;
@@ -65,7 +62,6 @@ function renderPosts(filter = "ALL") {
         </article>
     `).join('');
 
-    // Intersection Observer for Scroll Animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
     }, { threshold: 0.1 });
@@ -77,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPosts();
     initSlider();
 
-    // Category Filter (No Adsterra Redirect here)
+    // Category Filter (ඔයා එවපු විදිහටම)
     document.querySelectorAll('.cat-item').forEach(item => {
         item.addEventListener('click', function() {
             document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
@@ -86,16 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Theme Toggle
+    // Theme Toggle (ඔයා එවපු විදිහටම)
     const themeToggle = document.getElementById('theme-toggle');
     if(themeToggle) {
-        // පරණ settings තිබේ නම් load කිරීම
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             themeToggle.checked = true;
         }
-
         themeToggle.onchange = (e) => {
             const isDark = e.target.checked;
             document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
@@ -103,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Search Logic
+    // Search Logic (ඔයා එවපු විදිහටම)
     const searchInput = document.getElementById('search-input');
     if(searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -114,23 +108,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // [UPDATED] Sticky Header with Shrink effect
+    // Sticky Header Logic (ඔයා එවපු විදිහටම)
     window.addEventListener('scroll', () => {
         const header = document.getElementById('main-header');
         if(header) {
             if (window.scrollY > 80) {
                 header.classList.add('sticky');
-                header.classList.add('shrunk'); // CSS එකට අවශ්‍ය class එක
             } else {
                 header.classList.remove('sticky');
-                header.classList.remove('shrunk');
             }
         }
     });
 
-    // Preloader
+    // Preloader (ඔයා එවපු විදිහටම)
     window.onload = () => {
         const preloader = document.getElementById('preloader');
         if(preloader) preloader.classList.add('fade-out');
     };
+
+    // -------------------------------------------------------------------
+    // [ADDED] NEW SIDEBAR LOGIC (කිසිවක් ඉවත් කර නැත)
+    // -------------------------------------------------------------------
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeSidebar = document.getElementById('close-sidebar');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    const toggleSidebar = () => {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    };
+
+    if(menuToggle) menuToggle.addEventListener('click', toggleSidebar);
+    if(closeSidebar) closeSidebar.addEventListener('click', toggleSidebar);
+    if(overlay) overlay.addEventListener('click', toggleSidebar);
+
+    // Sidebar එකේ තියෙන category එකක් click කළාම Sidebar එක වැසීමට
+    document.querySelectorAll('.sidebar .cat-item').forEach(item => {
+        item.addEventListener('click', () => {
+            toggleSidebar();
+        });
+    });
 });

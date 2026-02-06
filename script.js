@@ -14,7 +14,7 @@ function handleDirectClick(event, originalLink) {
     window.location.href = ADSTERRA_DIRECT_LINK;
 }
 
-// Hero Slider (ඔයා එවපු විදිහටම)
+// Hero Slider
 let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -38,7 +38,7 @@ function updateSlider() {
     if(document.querySelectorAll('.dot')[slideIndex]) document.querySelectorAll('.dot')[slideIndex].classList.add('active');
 }
 
-// Render Posts (ඔයා එවපු විදිහටම)
+// Render Posts
 function renderPosts(filter = "ALL") {
     const container = document.getElementById('blog-wrapper');
     if(!container) return;
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPosts();
     initSlider();
 
-    // Category Filter (ඔයා එවපු විදිහටම)
+    // Category Filter
     document.querySelectorAll('.cat-item').forEach(item => {
         item.addEventListener('click', function() {
             document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Theme Toggle (ඔයා එවපු විදිහටම)
+    // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
     if(themeToggle) {
         const currentTheme = localStorage.getItem('theme');
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Search Logic (ඔයා එවපු විදිහටම)
+    // Search Logic
     const searchInput = document.getElementById('search-input');
     if(searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sticky Header Logic (ඔයා එවපු විදිහටම)
+    // Sticky Header
     window.addEventListener('scroll', () => {
         const header = document.getElementById('main-header');
         if(header) {
@@ -120,15 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Preloader (ඔයා එවපු විදිහටම)
-    window.onload = () => {
-        const preloader = document.getElementById('preloader');
-        if(preloader) preloader.classList.add('fade-out');
-    };
-
-    // -------------------------------------------------------------------
-    // [ADDED] NEW SIDEBAR LOGIC (කිසිවක් ඉවත් කර නැත)
-    // -------------------------------------------------------------------
+    // Sidebar Logic
     const menuToggle = document.getElementById('menu-toggle');
     const closeSidebar = document.getElementById('close-sidebar');
     const sidebar = document.getElementById('mobile-sidebar');
@@ -143,10 +135,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if(closeSidebar) closeSidebar.addEventListener('click', toggleSidebar);
     if(overlay) overlay.addEventListener('click', toggleSidebar);
 
-    // Sidebar එකේ තියෙන category එකක් click කළාම Sidebar එක වැසීමට
     document.querySelectorAll('.sidebar .cat-item').forEach(item => {
-        item.addEventListener('click', () => {
-            toggleSidebar();
-        });
+        item.addEventListener('click', () => { toggleSidebar(); });
+    });
+
+    // --- UPDATED PRELOADER LOGIC ---
+    // මෙතනදී මම window.onload පාවිච්චි කළා සයිට් එකේ ඔක්කොම Images load වෙනකම් ඉන්න.
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        if(preloader) {
+            // තත්පර 1 ක පමාවක් (Delay) දැම්මා ඔයාගේ Animation එක ලස්සනට පේන්න.
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 1000); 
+        }
     });
 });

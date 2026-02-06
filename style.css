@@ -132,96 +132,81 @@ input:checked + .slider:before { transform: translateX(1.5em); box-shadow: inset
 .footer-bottom { text-align: center; padding-top: 80px; border-top: 1px solid #222; margin-top: 80px; color: #444; font-size: 11px; }
 
 /* ------------------------------------------------------------------- */
-/* [ADDED] NEW CSS FOR MOBILE SIDEBAR (කිසිවක් ඉවත් කර නැත) */
+/* [ADDED] MOBILE RESPONSIVE OPTIMIZATIONS (කිසිවක් ඉවත් කර නැත) */
 /* ------------------------------------------------------------------- */
 
-.mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    left: 20px;
-    z-index: 1001;
+@media (max-width: 768px) {
+    /* Header & Logo */
+    header {
+        height: 80px; /* Mobile එකේදී header එකේ උස අඩු කළා */
+    }
+    .site-title {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+    
+    /* Hero Slider - Mobile එකට ගැලපෙන උස */
+    .hero-slider {
+        height: 450px; /* Mobile එකේදී slider එකේ උස අඩු කළා */
+        margin-bottom: 30px;
+    }
+    .slide-content h2 {
+        font-size: 32px; /* අකුරු පොඩි කළා screen එකට ගැලපෙන්න */
+    }
+    .slide-content p {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    /* Blog Grid - එක පේළියට එකක් පේන විදිහට */
+    .blog-grid {
+        gap: 50px; /* Post අතර පරතරය අඩු කළා */
+        margin-top: 40px;
+    }
+    .grid-item {
+        gap: 20px; /* රූපය සහ විස්තර අතර පරතරය අඩු කළා */
+    }
+    .img-holder {
+        height: 280px; /* රූපයේ උස අඩු කළා */
+    }
+    .item-info h2 {
+        font-size: 28px; /* Post title එක පොඩි කළා */
+        line-height: 1.2;
+    }
+    .item-info p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* Preloader - Mobile අකුරු */
+    .letter {
+        font-size: 32px;
+        letter-spacing: 3px;
+    }
+
+    /* Footer - Mobile එකේදී පේළියට එක බැගින් */
+    .footer-grid {
+        grid-template-columns: 1fr; /* Footer එක එක පේළියට ගත්තා */
+        gap: 40px;
+        text-align: center;
+    }
+    .social-links {
+        justify-content: center;
+    }
+    .footer-subscribe {
+        justify-content: center;
+    }
+    .footer-logo {
+        font-size: 24px;
+    }
 }
 
-.mobile-menu-btn span {
-    width: 25px;
-    height: 2px;
-    background: var(--text-color);
-    transition: 0.3s;
-}
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -320px; 
-    width: 300px;
-    height: 100%;
-    background: var(--bg-color);
-    z-index: 2000;
-    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    padding: 40px 30px;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-}
-
-.sidebar.active { left: 0; }
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 60px;
-}
-
-.close-btn {
-    font-size: 35px;
-    background: transparent;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-.sidebar-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.sidebar-links li {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--para-color);
-}
-
-.sidebar-links li.active { color: var(--accent-color); }
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(4px);
-    z-index: 1999;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-}
-
-.overlay.active { opacity: 1; visibility: visible; }
-
-@media (max-width: 992px) {
-    .mobile-menu-btn { display: flex; }
-    .nav-links, .nav-extras { display: none; } 
-    .site-title { font-size: 24px; text-align: center; width: 100%; }
-    header { height: 100px; }
-    body { padding-top: 100px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; } 
-    .grid-item, .grid-item:nth-child(even) { flex-direction: column; }
-    .img-holder { height: 350px; width: 100%; }
+/* ඉතා කුඩා Screen සඳහා (iPhone SE වැනි) */
+@media (max-width: 480px) {
+    .slide-content h2 {
+        font-size: 26px;
+    }
+    .img-holder {
+        height: 220px;
+    }
 }
